@@ -1,0 +1,6 @@
+com\mycompany\interpreterexample\DeliverToCustomerExpression.class
+com\mycompany\interpreterexample\DeliveryContext.class
+com\mycompany\interpreterexample\DeliveryInstructionsExpression.class
+com\mycompany\interpreterexample\NavigateToLocationExpression.class
+com\mycompany\interpreterexample\InterpreterExample.class
+com\mycompany\interpreterexample\Expression.class
