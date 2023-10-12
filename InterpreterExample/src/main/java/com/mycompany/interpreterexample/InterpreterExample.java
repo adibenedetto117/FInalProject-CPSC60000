@@ -13,26 +13,31 @@ import java.util.Scanner;
 public class InterpreterExample {
 
     public static void main(String[] args) {
-        // Create a delivery context
         DeliveryContext context = new DeliveryContext();
 
-        // Prompt the user for delivery instructions
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter delivery instructions: ");
-        String input = scanner.nextLine();
 
-        // Define delivery instructions using the interpreter pattern based on user input
-        Expression navigate = new NavigateToLocationExpression("Customer's Location");
-        Expression deliver = new DeliverToCustomerExpression();
+        System.out.print("Enter the food you want to order: ");
+        String foodItem = scanner.nextLine();
+
+        System.out.print("Enter delivery address: ");
+        String address = scanner.nextLine();
+
+        System.out.print("Additional delivery instructions (e.g. 'leave at door' or 'ring doorbell'): ");
+        String deliveryMethod = scanner.nextLine();
+
+        Expression foodOrder = new FoodOrderExpression(foodItem);
+        Expression navigate = new NavigateToLocationExpression(address);
+        Expression deliverMethod = new DeliveryMethodExpression(deliveryMethod);
 
         DeliveryInstructionsExpression instructions = new DeliveryInstructionsExpression();
+        instructions.addExpression(foodOrder);
         instructions.addExpression(navigate);
-        instructions.addExpression(deliver);
+        instructions.addExpression(deliverMethod);
 
-        // Execute the instructions in the context of a delivery
         instructions.interpret(context);
-        
-        // Close the scanner
+
         scanner.close();
     }
+
 }
